@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AlumnoService {
@@ -24,7 +25,7 @@ public class AlumnoService {
         alumnoRepository.eliminarAlumno(dni);
     }
 
-    public List<Alumno> getAlumnoDniNombre(Integer dni, String nombre){
+    public Optional<Alumno> getAlumnoDniNombre(Integer dni, String nombre){
         return alumnoRepositoryDAO.buscarAlumnoPorDniyNombre(dni,nombre);
     }
     public List<Alumno>getListaAlumnos(){

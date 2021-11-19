@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class AlumnoController {
@@ -38,9 +39,13 @@ public class AlumnoController {
         return service.getListaAlumnos();
     }
     @GetMapping("/buscarAlumnoDniNombre/{dni}/{nombre}")
-    public List<Alumno> buscarAlumnoDniNombre(@PathVariable Integer dni,@PathVariable String nombre) throws noExisteException {
+        public ResponseEntity<Alumno> buscarAlumnoDniNombre(@PathVariable Integer dni,@PathVariable String nombre) throws noExisteException {
+        Optional<Alumno> optionalAlumno = alumnoRepositoryDAO.buscarAlumnoPorDniyNombre(dni,nombre);
+        if (optionalAlumno.isEmpty()){
+            throw new noExisteException();
+        }
         System.out.println("*******GET*******");
-        return alumnoRepositoryDAO.buscarAlumnoPorDniyNombre(dni,nombre);
+        return ResponseEntity.ok(optionalAlumno.get());
     }
     //🧑***BORRAR ALUMNO***🧑//
     @DeleteMapping("/borrarAlumnoPorDni/{dni}")
