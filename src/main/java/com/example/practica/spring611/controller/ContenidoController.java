@@ -48,6 +48,7 @@ public class ContenidoController {
     //(⌐■_■)***PUT DE CONTENIDO***(⌐■_■)//
     @PutMapping("/actualizarContenido/{id}")
     public ResponseEntity<Integer>actualizarContenido(@PathVariable Integer id, @RequestBody Contenido contenido){
+        System.out.println("*******PUT*******");
         contenidoRepository.actualizarContenido(contenido,id);
         return ResponseEntity.ok(id);
     }
