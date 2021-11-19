@@ -1,5 +1,6 @@
 package com.example.practica.spring611.controller;
 
+import com.example.practica.spring611.Configuration.noExisteException;
 import com.example.practica.spring611.entity.Alumno;
 import com.example.practica.spring611.repository.AlumnoRepository;
 import com.example.practica.spring611.repository.AlumnoRepositoryDAO;
@@ -37,7 +38,7 @@ public class AlumnoController {
         return service.getListaAlumnos();
     }
     @GetMapping("/buscarAlumnoDniNombre/{dni}/{nombre}")
-    public List<Alumno> buscarAlumnoDniNombre(@PathVariable Integer dni,@PathVariable String nombre){
+    public List<Alumno> buscarAlumnoDniNombre(@PathVariable Integer dni,@PathVariable String nombre) throws noExisteException {
         System.out.println("*******GET*******");
         return alumnoRepositoryDAO.buscarAlumnoPorDniyNombre(dni,nombre);
     }
